@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Operating Dashboard — Soko Flow OS</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- LEAFLET MAP STYLES & SCRIPT -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <a href="index.html" class="brand-logo" style="color:#fff; margin-bottom: 2rem;">⚡ Soko Flow</a>
+      <a href="dashboard.html" class="sidebar-link active">📊 Dashboard</a>
+      <a href="store.html" class="sidebar-link">🛍️ Storefront</a>
+      <a href="datastore.html" class="sidebar-link">📶 Data Store</a>
+      <a href="preorder.html" class="sidebar-link">🔥 Pre-Orders</a>
+      <a href="orders.html" class="sidebar-link">📦 Orders & Dispatch</a>
+      <a href="imports.html" class="sidebar-link">🚢 Import Batches</a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      
+      <!-- SOKO FLOW SUBSCRIPTION RENEWAL NOTICE BANNER -->
+      <div class="glass-card" style="background: linear-gradient(135deg, var(--purple-deep), var(--dark-base)); color: #fff; margin-bottom: 2rem; border: 1px solid var(--accent-gold);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="status-badge status-pending">PRO SELLER PLAN (GH₵ 30 / MONTH)</span>
+            <h3 style="font-size: 1.4rem; font-weight: 800; margin-top: 0.4rem;">Soko Flow Platform Subscription Renewal</h3>
+            <p style="color: #D1D5DB; font-size: 0.9rem;">To renew Pro (GH₵ 30) or Custom Domain (GH₵ 50), transfer to Soko Flow MoMo:</p>
+            <div style="margin-top: 0.6rem; font-size: 0.95rem;">
+              • MoMo Number: <strong>0551690560</strong> (Name: <strong>CHARLES ALBERT QUIST</strong>)<br>
+              • Bank Transfer / WhatsApp Proof: <strong>0202824902</strong>
+            </div>
+          </div>
+          <button onclick="SokoFlow.showToast('Instructions sent to WhatsApp', 'info')" class="btn btn-gold">Verify Renewal on WhatsApp</button>
+        </div>
+      </div>
+
+      <!-- MERCHANT KYC VERIFICATION STATUS BANNER -->
+      <div id="kycNoticeBanner" class="glass-card" style="background: linear-gradient(135deg, var(--dark-surface), var(--dark-base)); border: 1px solid var(--purple-light); color: #fff; margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="status-badge status-pending" id="dispKycBadge">KYC STATUS: PENDING VERIFICATION</span>
+            <h3 style="font-size: 1.3rem; font-weight: 800; margin-top: 0.4rem;">Merchant Ghana Card & MoMo Name Verification</h3>
+            <p style="color: #D1D5DB; font-size: 0.88rem;">Your store details have been submitted to Soko Flow Admin for compliance verification.</p>
+          </div>
+          <button onclick="openKycModal()" class="btn btn-gold">Update Ghana Card Docs</button>
+        </div>
+      </div>
+
+      <!-- TOP ACTION BAR -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom: 2rem;">
+        <div>
+          <h1 style="font-size: 2rem; font-weight: 800; color: var(--purple-deep);" id="dashWelcomeTitle">Merchant Operational Center 👋</h1>
+          <p style="color: var(--text-muted);">Real-time revenue metrics, live rider tracking map, WhatsApp AI, and team staff permissions.</p>
+        </div>
+        <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
+          <button class="btn btn-gold" onclick="SokoFlow.exportSalesOrdersCSV()">📊 Export Sales CSV</button>
+          <button class="btn btn-outline" onclick="openStaffModal()">👥 Manage Team Staff</button>
+          <button class="btn btn-primary" onclick="openRiderTrackerModal()">🛵 Track Rider</button>
+        </div>
+      </div>
+
+      <!-- GOOGLE-MAPS-STYLE LIVE ANIMATED DISPATCH MAP SECTION -->
+      <div class="card" style="margin-bottom: 2.5rem; background: #fff; padding: 1.5rem; position: relative;">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--purple-deep); display:flex; align-items:center; gap:8px;">
+              <span>🗺️ Google-Style Live Navigation & Rider GPS</span>
+              <span class="pulse-dot"></span>
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem;">Real-time GPS tracking with live rider movement along Accra streets.</p>
+          </div>
+
+          <!-- MAP LAYER SWITCHERS (STREET VS SATELLITE VS DARK) -->
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <button onclick="setMapLayer('street')" id="mapBtnStreet" class="btn btn-primary" style="padding: 5px 12px; font-size: 0.78rem;">🗺️ Street View</button>
+            <button onclick="setMapLayer('satellite')" id="mapBtnSatellite" class="btn btn-outline" style="padding: 5px 12px; font-size: 0.78rem;">🛰️ Satellite</button>
+            <button onclick="setMapLayer('dark')" id="mapBtnDark" class="btn btn-outline" style="padding: 5px 12px; font-size: 0.78rem;">🌙 Dark Mode</button>
+            <button onclick="panToRider()" class="btn btn-gold" style="padding: 5px 12px; font-size: 0.78rem;">🛵 Recenter Rider</button>
+          </div>
+        </div>
+
+        <!-- GOOGLE MAPS STYLE FLOATING TELEMETRY CARD -->
+        <div style="position: absolute; top: 85px; left: 35px; z-index: 1000; background: rgba(15, 10, 28, 0.92); backdrop-filter: blur(12px); color: #fff; padding: 12px 18px; border-radius: 12px; border: 1px solid var(--accent-gold); box-shadow: var(--shadow-lg); font-size: 0.82rem; max-width: 280px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+            <strong style="color:var(--accent-gold);" id="mapTelemetryTitle">🛵 RIDER IN MOTION</strong>
+            <span class="status-badge status-paid" style="font-size:0.65rem; padding:2px 6px;">34 km/h</span>
+          </div>
+          <div style="font-weight:700;" id="mapCurrentStreet">Street: Liberation Road, Accra</div>
+          <div style="color:#D1D5DB; margin-top:2px;" id="mapEtaText">Destination: East Legon (ETA: 9 mins)</div>
+        </div>
+
+        <!-- REAL MAP CONTAINER ELEMENT -->
+        <div id="liveDeliveryMap" style="height: 380px; width: 100%; border-radius: 14px; border: 1px solid var(--border-strong); z-index: 1;"></div>
+      </div>
+
+      <!-- LIVE SALES CANVAS CHART CARD -->
+      <div class="card" style="margin-bottom: 2.5rem; background: #fff;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--purple-deep);">📈 Store Sales & Revenue Trend (Last 30 Days)</h3>
+          <span class="status-badge status-paid">LIVE METRICS</span>
+        </div>
+        <canvas id="sellerSalesCanvas" style="width: 100%; height: 200px;"></canvas>
+      </div>
+
+      <!-- METRIC CARDS -->
+      <div class="grid-cards">
+        <div class="card">
+          <div class="metric-title">Total Revenue</div>
+          <div class="metric-value">GH₵ 42,850</div>
+          <div class="metric-trend">↑ 18.4% this month</div>
+        </div>
+        <div class="card">
+          <div class="metric-title">Active Pre-Orders</div>
+          <div class="metric-value">148 Units</div>
+          <div class="metric-trend">Target: 200 Units</div>
+        </div>
+        <div class="card">
+          <div class="metric-title">Active Cargo Batches</div>
+          <div class="metric-value">2 Shipments</div>
+          <div class="metric-trend" style="color:var(--purple-primary);">1 Clearing Customs</div>
+        </div>
+        <div class="card">
+          <div class="metric-title">Est. Net Profit Margin</div>
+          <div class="metric-value">54.2%</div>
+          <div class="metric-trend">Healthy Profitability</div>
+        </div>
+      </div>
+
+      <!-- SOKO AI WHATSAPP AUTO-RESPONDER WIDGET -->
+      <div class="ai-assistant-card" style="margin-bottom: 2.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <h3 style="color: var(--accent-gold);">🤖 Soko AI WhatsApp Sales Agent (24/7 Auto-Pilot)</h3>
+            <p style="font-size: 0.9rem; color: #D1D5DB;">Status: Connected to WhatsApp Cloud API • Auto-replies to customer DMs with prices & checkout links.</p>
+          </div>
+          
+          <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 700; font-size: 0.88rem;">
+              <input type="radio" name="aiWaMode" value="AUTO" checked onchange="handleAiModeChange('AUTO')" style="accent-color: var(--accent-gold);">
+              <span>AI Auto-Pilot</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 700; font-size: 0.88rem;">
+              <input type="radio" name="aiWaMode" value="AWAY" onchange="handleAiModeChange('AWAY')" style="accent-color: var(--accent-gold);">
+              <span>Away Mode</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 700; font-size: 0.88rem;">
+              <input type="radio" name="aiWaMode" value="OFF" onchange="handleAiModeChange('OFF')" style="accent-color: var(--danger-rose);">
+              <span>Human Only</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem;">
+          <input type="text" id="aiTestInput" placeholder="Simulate customer WhatsApp question e.g. How much is 10GB MTN Data?" style="flex: 1; padding: 0.75rem; border-radius: 8px; border: none;">
+          <button onclick="testAiWhatsAppReply()" class="btn btn-gold">Test AI Auto-Reply</button>
+        </div>
+        <div id="aiWhatsAppReplyBox" style="margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 8px; white-space:pre-line; display:none;"></div>
+      </div>
+
+      <!-- STORE MOMO & WHATSAPP SETTINGS FORM -->
+      <div class="card" style="background: #fff; margin-bottom: 2.5rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.2rem; color: var(--purple-primary);">⚙️ Your Store MoMo & WhatsApp Settings</h3>
+        <form onsubmit="saveStoreSettings(event)">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+            
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">Your Receiving MoMo Number</label>
+              <input type="text" id="storeMomoNumber" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-strong);">
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">MoMo Account Name</label>
+              <input type="text" id="storeMomoName" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-strong);">
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">WhatsApp Contact Phone</label>
+              <input type="text" id="storeWhatsappPhone" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-strong);">
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">WhatsApp Customer Group Link</label>
+              <input type="url" id="storeWhatsappGroup" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-strong);">
+            </div>
+
+          </div>
+          <button type="submit" class="btn btn-primary">Update Store Details</button>
+        </form>
+      </div>
+
+      <!-- TEAM STAFF DIRECTORY -->
+      <div class="card" style="background: #fff; margin-bottom: 2.5rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem; color: var(--purple-primary);">👥 Authorized Portal Team Staff</h3>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Staff Name</th>
+                <th>Role & Permission</th>
+                <th>Email</th>
+                <th>Contact Phone</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="staffTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- RIDER TRACKING MODAL -->
+  <div id="riderModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.65); backdrop-filter:blur(8px); z-index:10000; align-items:center; justify-content:center; padding:1rem;">
+    <div class="card" style="width:100%; max-width:500px; background:#fff; padding:2rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
+        <h3 style="font-size:1.25rem; font-weight:800; color:var(--purple-deep);">🛵 Live Rider Delivery Tracker</h3>
+        <button onclick="closeRiderModal()" style="border:none; background:none; font-size:1.5rem; cursor:pointer;">✕</button>
+      </div>
+
+      <form onsubmit="handleTrackRider(event)">
+        <div style="margin-bottom:0.8rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.3rem;">Order ID / Code</label>
+          <input type="text" id="trackOrderId" required value="#ORD-8801" style="width:100%; padding:0.75rem; border-radius:8px; border:1px solid var(--border-strong);">
+        </div>
+
+        <div style="margin-bottom:1.2rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.3rem;">Rider Phone Number</label>
+          <input type="tel" id="trackRiderPhone" required value="0241002001" style="width:100%; padding:0.75rem; border-radius:8px; border:1px solid var(--border-strong);">
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;">Fetch Rider Live Status</button>
+      </form>
+
+      <div id="riderResultBox" style="margin-top:1.5rem; background:var(--purple-soft); padding:1rem; border-radius:10px; display:none;">
+        <div style="font-weight:800; color:var(--purple-deep);" id="resRiderStatus">Status: Rider Assigned</div>
+        <div style="font-size:0.88rem; margin-top:0.3rem;" id="resRiderEta">ETA: 15 mins</div>
+        <div style="font-size:0.85rem; color:var(--text-muted);" id="resRiderRoute">Route: Liberation Road → East Legon</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD STAFF MODAL -->
+  <div id="staffModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.65); backdrop-filter:blur(8px); z-index:10000; align-items:center; justify-content:center; padding:1rem;">
+    <div class="card" style="width:100%; max-width:480px; background:#fff; padding:2rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
+        <h3 style="font-size:1.25rem; font-weight:800; color:var(--purple-deep);">Add Team Staff Member</h3>
+        <button onclick="closeStaffModal()" style="border:none; background:none; font-size:1.5rem; cursor:pointer;">✕</button>
+      </div>
+
+      <form onsubmit="handleAddStaff(event)">
+        <div style="margin-bottom:0.8rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.3rem;">Staff Full Name</label>
+          <input type="text" id="newStaffName" required placeholder="Kwaku Addo" style="width:100%; padding:0.75rem; border-radius:8px; border:1px solid var(--border-strong);">
+        </div>
+
+        <div style="margin-bottom:0.8rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.3rem;">Staff Email</label>
+          <input type="email" id="newStaffEmail" required placeholder="kwaku@luxe.com" style="width:100%; padding:0.75rem; border-radius:8px; border:1px solid var(--border-strong);">
+        </div>
+
+        <div style="margin-bottom:0.8rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.3rem;">Role & Permission</label>
+          <select id="newStaffRole" style="width:100%; padding:0.75rem; border-radius:8px; border:1px solid var(--border-strong);">
+            <option>Sales Manager</option>
+            <option>Dispatch & Rider Officer</option>
+            <option>Inventory Clerk</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:1.2rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.3rem;">Contact Phone</label>
+          <input type="tel" id="newStaffPhone" required placeholder="0240001122" style="width:100%; padding:0.75rem; border-radius:8px; border:1px solid var(--border-strong);">
+        </div>
+
+        <button type="submit" class="btn btn-gold" style="width:100%;">Add Staff Member</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MERCHANT KYC UPLOAD MODAL -->
+  <div id="kycModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.65); backdrop-filter:blur(8px); z-index:10000; align-items:center; justify-content:center; padding:1rem;">
+    <div class="card" style="width:100%; max-width:480px; background:#fff; padding:2rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
+        <h3 style="font-size:1.25rem; font-weight:800; color:var(--purple-deep);">Upload Merchant Ghana Card KYC</h3>
+        <button onclick="closeKycModal()" style="border:none; background:none; font-size:1.5rem; cursor:pointer;">✕</button>
+      </div>
+
+      <form onsubmit="submitKycDocs(event)">
+        <div style="margin-bottom:1rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.3rem;">Ghana Card ID Number</label>
+          <input type="text" id="kycGhanaCard" required value="GHA-728192839-4" style="width:100%; padding:0.75rem; border-radius:8px; border:1px solid var(--border-strong);">
+        </div>
+
+        <div style="margin-bottom:1.2rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.3rem;">MoMo Registered Name</label>
+          <input type="text" id="kycMomoName" required value="Jane Doe (Luxe Apparel)" style="width:100%; padding:0.75rem; border-radius:8px; border:1px solid var(--border-strong);">
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;">Submit Documents for Admin Approval</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    let map;
+    let riderMarker;
+    let mapLayers = {};
+    let activeLayerName = 'street';
+
+    // REAL GPS WAYPOINTS FOR ACCRA RIDER ROUTE (Liberation Road → Tetteh Quarshie → East Legon)
+    const riderWaypoints = [
+      { coords: [5.5898, -0.1812], street: '37 Military Hospital Road', eta: '16 mins' },
+      { coords: [5.6037, -0.1870], street: 'Liberation Road (near Airport)', eta: '13 mins' },
+      { coords: [5.6128, -0.1819], street: 'Tetteh Quarshie Interchange', eta: '10 mins' },
+      { coords: [5.6250, -0.1710], street: 'Boundary Road, East Legon', eta: '6 mins' },
+      { coords: [5.6350, -0.1600], street: 'Lagos Avenue (Customer Destination)', eta: 'Arriving' }
+    ];
+
+    let currentWaypointIndex = 0;
+
+    // INITIALIZE GOOGLE-MAPS-STYLE LEAFLET ENGINE
+    function initRealDeliveryMap() {
+      map = L.map('liveDeliveryMap', { zoomControl: false }).setView([5.6128, -0.1819], 13);
+
+      // Define Map Tile Layers
+      mapLayers.street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' });
+      mapLayers.satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: '© Esri Satellite' });
+      mapLayers.dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19, attribution: '© CartoDB Dark' });
+
+      // Add default Street Layer
+      mapLayers.street.addTo(map);
+
+      // Add Zoom Control at bottom right
+      L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+      // 1. Warehouse Marker (Accra Central)
+      const warehouseMarker = L.marker([5.5898, -0.1812]).addTo(map);
+      warehouseMarker.bindPopup("<b>🏬 Main Warehouse Hub</b><br>Accra Central Distribution.").openPopup();
+
+      // 2. Animated Rider Marker (Custom Red/Purple Icon)
+      riderMarker = L.marker(riderWaypoints[0].coords).addTo(map);
+      riderMarker.bindPopup("<b>🛵 Rider Kwame (0241002001)</b><br>Speed: 34 km/h<br>Carrying Order #ORD-8801.");
+
+      // 3. Customer Destination Marker
+      const customerMarker = L.marker([5.6350, -0.1600]).addTo(map);
+      customerMarker.bindPopup("<b>📍 Sarah Mensah (Customer)</b><br>East Legon, Accra.");
+
+      // Draw Polyline Route along streets
+      L.polyline(riderWaypoints.map(w => w.coords), {
+        color: '#7C3AED',
+        weight: 5,
+        opacity: 0.8,
+        dashArray: '10, 6'
+      }).addTo(map);
+
+      // START SMOOTH RIDER GPS SIMULATION
+      startRiderGpsSimulation();
+    }
+
+    // LIVE GPS RIDER ANIMATION LOOP
+    function startRiderGpsSimulation() {
+      setInterval(() => {
+        currentWaypointIndex = (currentWaypointIndex + 1) % riderWaypoints.length;
+        const wp = riderWaypoints[currentWaypointIndex];
+
+        // Update Rider Marker position smoothly
+        if (riderMarker) {
+          riderMarker.setLatLng(wp.coords);
+        }
+
+        // Update Google Maps Style Floating Telemetry Card
+        document.getElementById('mapCurrentStreet').innerText = `Street: ${wp.street}`;
+        document.getElementById('mapEtaText').innerText = `Destination: East Legon (${wp.eta})`;
+      }, 4000);
+    }
+
+    // SWITCH MAP LAYERS (STREET / SATELLITE / DARK)
+    function setMapLayer(layerType) {
+      if (!map) return;
+
+      Object.keys(mapLayers).forEach(k => map.removeLayer(mapLayers[k]));
+      mapLayers[layerType].addTo(map);
+
+      document.getElementById('mapBtnStreet').className = layerType === 'street' ? 'btn btn-primary' : 'btn btn-outline';
+      document.getElementById('mapBtnSatellite').className = layerType === 'satellite' ? 'btn btn-primary' : 'btn btn-outline';
+      document.getElementById('mapBtnDark').className = layerType === 'dark' ? 'btn btn-primary' : 'btn btn-outline';
+
+      SokoFlow.showToast(`Map layer switched to ${layerType.toUpperCase()} view`, 'info');
+    }
+
+    function panToRider() {
+      if (map && riderMarker) {
+        const currentCoord = riderWaypoints[currentWaypointIndex].coords;
+        map.flyTo(currentCoord, 15, { duration: 1.5 });
+        riderMarker.openPopup();
+        SokoFlow.showToast('Camera centered on Rider Kwame live GPS position', 'info');
+      }
+    }
+
+    function resetMapView() {
+      if (map) {
+        map.flyTo([6.1000, -0.8000], 7, { duration: 1.5 });
+        SokoFlow.showToast('Showing all regional hubs across Ghana', 'info');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const info = SokoFlow.getSellerStoreInfo();
+      document.getElementById('dashWelcomeTitle').innerText = `Welcome back, ${info.storeName} 👋`;
+
+      document.getElementById('storeMomoNumber').value = info.momoNumber;
+      document.getElementById('storeMomoName').value = info.momoName;
+      document.getElementById('storeWhatsappPhone').value = info.whatsappPhone;
+      document.getElementById('storeWhatsappGroup').value = info.whatsappGroup;
+
+      renderStaffTable();
+      initRealDeliveryMap();
+
+      setTimeout(() => {
+        SokoFlow.drawLiveCanvasChart('sellerSalesCanvas', [450, 900, 1200, 1800, 2400, 3100, 4250], '#7C3AED', 'rgba(124, 58, 237, 0.15)');
+      }, 200);
+    });
+
+    function saveStoreSettings(e) {
+      e.preventDefault();
+      const updated = {
+        ownerName: SokoFlow.getSellerStoreInfo().ownerName,
+        storeName: SokoFlow.getSellerStoreInfo().storeName,
+        email: SokoFlow.getSellerStoreInfo().email,
+        momoNumber: document.getElementById('storeMomoNumber').value,
+        momoName: document.getElementById('storeMomoName').value,
+        whatsappPhone: document.getElementById('storeWhatsappPhone').value,
+        whatsappGroup: document.getElementById('storeWhatsappGroup').value
+      };
+      SokoFlow.saveSellerStoreInfo(updated);
+      SokoFlow.showToast('Store details saved and synced across storefront!', 'info');
+    }
+
+    function renderStaffTable() {
+      const staffList = SokoFlow.getStaffMembers();
+      const tbody = document.getElementById('staffTableBody');
+      tbody.innerHTML = staffList.map(s => `
+        <tr>
+          <td><strong>${s.name}</strong></td>
+          <td><span class="status-badge status-processing">${s.role}</span></td>
+          <td>${s.email}</td>
+          <td>${s.phone}</td>
+          <td><span class="status-badge status-paid">Active</span></td>
+        </tr>
+      `).join('');
+    }
+
+    function openRiderTrackerModal() { document.getElementById('riderModal').style.display = 'flex'; }
+    function closeRiderModal() { document.getElementById('riderModal').style.display = 'none'; }
+
+    function handleTrackRider(e) {
+      e.preventDefault();
+      const orderId = document.getElementById('trackOrderId').value;
+      const phone = document.getElementById('trackRiderPhone').value;
+
+      const res = SokoFlow.trackRider(orderId, phone);
+      if (res) {
+        document.getElementById('resRiderStatus').innerText = `Status: ${res.status}`;
+        document.getElementById('resRiderEta').innerText = `Estimated Arrival: ${res.eta}`;
+        document.getElementById('resRiderRoute').innerText = `Live Route: ${res.location}`;
+        document.getElementById('riderResultBox').style.display = 'block';
+        panToRider();
+      }
+    }
+
+    function openStaffModal() { document.getElementById('staffModal').style.display = 'flex'; }
+    function closeStaffModal() { document.getElementById('staffModal').style.display = 'none'; }
+
+    function handleAddStaff(e) {
+      e.preventDefault();
+      const name = document.getElementById('newStaffName').value;
+      const email = document.getElementById('newStaffEmail').value;
+      const role = document.getElementById('newStaffRole').value;
+      const phone = document.getElementById('newStaffPhone').value;
+
+      SokoFlow.addStaffMember(name, email, role, phone);
+      renderStaffTable();
+      closeStaffModal();
+    }
+
+    function openKycModal() { document.getElementById('kycModal').style.display = 'flex'; }
+    function closeKycModal() { document.getElementById('kycModal').style.display = 'none'; }
+
+    function submitKycDocs(e) {
+      e.preventDefault();
+      closeKycModal();
+      SokoFlow.showToast('KYC Documents submitted for Soko Flow Admin approval!', 'info');
+    }
+
+    function testAiWhatsAppReply() {
+      const query = document.getElementById('aiTestInput').value || 'How much is 10GB MTN?';
+      const autoReply = SokoFlow.generateWhatsAppAutoReply(query);
+      const box = document.getElementById('aiWhatsAppReplyBox');
+      box.style.display = 'block';
+      box.innerText = autoReply;
+    }
+
+    function handleAiModeChange(mode) {
+      SokoFlow.showToast(`Soko AI WhatsApp Agent mode set to: ${mode}`, 'info');
+    }
+  </script>
+</body>
+</html>

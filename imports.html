@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Cargo & Delivery Tracking — Soko Flow OS</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <a href="index.html" class="brand-logo" style="color:#fff; margin-bottom: 2rem;">⚡ Soko Flow</a>
+      <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+      <a href="store.html" class="sidebar-link">🛍️ Storefront</a>
+      <a href="preorder.html" class="sidebar-link">🔥 Pre-Orders</a>
+      <a href="orders.html" class="sidebar-link">📦 Orders</a>
+      <a href="imports.html" class="sidebar-link active">🚢 Import Cargo Batches</a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2rem;">
+        <div>
+          <h1 style="font-size: 2rem; font-weight: 800; color: var(--purple-deep);">Global Cargo & Delivery Tracking</h1>
+          <p style="color: var(--text-muted);">Real-time shipment milestones from China, Turkey & UAE ports to Tema Port, Ghana.</p>
+        </div>
+        <button class="btn btn-primary" onclick="SokoFlow.showToast('New Import Cargo Batch Creation Modal Opened', 'info')">+ Create Import Batch</button>
+      </div>
+
+      <!-- ACTIVE CARGO BATCH 1 -->
+      <div class="glass-card" style="background:#fff; margin-bottom: 2.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem;">
+          <div>
+            <span class="status-badge status-shipping">Container #TLL-88219</span>
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--purple-deep); margin-top:0.4rem;">Batch Code: SF-001 (Guangzhou → Tema Port)</h2>
+            <p style="color:var(--text-muted); font-size:0.9rem;">Consignment: Air Runner Sneakers & Designer Apparel (4,500 Units)</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Estimated Port Arrival:</div>
+            <div style="font-size: 1.4rem; font-weight: 800; color: var(--purple-primary);">April 15, 2025</div>
+          </div>
+        </div>
+
+        <!-- 6-STEP MILESTONE TIMELINE -->
+        <div class="timeline">
+          <div class="timeline-step completed">1. Batch Created</div>
+          <div class="timeline-step completed">2. Supplier Confirmed</div>
+          <div class="timeline-step completed">3. Payment Sent</div>
+          <div class="timeline-step active">4. Ocean Freight</div>
+          <div class="timeline-step">5. Customs Tema</div>
+          <div class="timeline-step">6. Local Delivery</div>
+        </div>
+
+        <div style="display:flex; gap:1rem; margin-top:1.5rem; flex-wrap:wrap;">
+          <button class="btn btn-gold" onclick="SokoFlow.showToast('Automated SMS Delivery Updates sent to 148 Pre-Order Customers!', 'info')">📱 Send Automated Buyer SMS Status</button>
+          <button class="btn btn-outline" onclick="SokoFlow.showToast('Cargo manifest PDF generated', 'info')">📄 Export Customs Manifest</button>
+        </div>
+      </div>
+
+      <!-- ACTIVE CARGO BATCH 2 -->
+      <div class="glass-card" style="background:#fff;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem;">
+          <div>
+            <span class="status-badge status-pending">Air Cargo #TK-9901</span>
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--purple-deep); margin-top:0.4rem;">Batch Code: SF-002 (Istanbul → Kotoka Int.)</h2>
+            <p style="color:var(--text-muted); font-size:0.9rem;">Consignment: Turkish Designer Fabrics & Luxury Accessories (1,200 Units)</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Customs Inspection Status:</div>
+            <div style="font-size: 1.4rem; font-weight: 800; color: var(--accent-gold);">Customs Clearance</div>
+          </div>
+        </div>
+
+        <!-- 6-STEP MILESTONE TIMELINE -->
+        <div class="timeline">
+          <div class="timeline-step completed">1. Batch Created</div>
+          <div class="timeline-step completed">2. Supplier Confirmed</div>
+          <div class="timeline-step completed">3. Air Flight Sent</div>
+          <div class="timeline-step completed">4. Kotoka Airport</div>
+          <div class="timeline-step active">5. Customs Duty</div>
+          <div class="timeline-step">6. Local Delivery</div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

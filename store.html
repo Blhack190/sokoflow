@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxe Apparel Storefront — Powered by Soko Flow</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background: var(--bg-light);">
+
+  <!-- PUBLIC STORE NAVBAR -->
+  <nav class="navbar">
+    <a href="#" class="brand-logo" style="color: var(--purple-deep);" id="dispBrandTitle">✨ Luxe Apparel Store</a>
+    <div style="display: flex; gap: 1rem; align-items: center;">
+      <a href="datastore.html" class="btn btn-outline" style="font-size:0.85rem;">📶 Buy Cheap Data Bundles</a>
+      <a href="#" id="btnChatLink" target="_blank" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">📱 Chat Owner on WhatsApp</a>
+    </div>
+  </nav>
+
+  <!-- STORE HERO BANNER -->
+  <div style="background: linear-gradient(180deg, rgba(15, 10, 28, 0.75), rgba(124, 58, 237, 0.88)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; padding: 4rem 6%; color: white;">
+    <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem;">
+      <div>
+        <span class="status-badge" style="background: rgba(255,255,255,0.2); color: #fff; margin-bottom: 0.8rem;">Verified Direct Importer</span>
+        <h1 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 0.6rem;" id="dispHeroTitle">Luxe Apparel Store</h1>
+        <p style="color: #E2E8F0; font-size: 1.1rem; max-width: 600px;">Direct imports from Turkey & China. Pay directly into store owner Mobile Money account.</p>
+      </div>
+
+      <!-- MERCHANT CARD -->
+      <div class="glass-card" style="background: rgba(17, 15, 44, 0.85); color: #fff; width: 320px; border-color: rgba(255,255,255,0.15);">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 0.8rem;">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" style="width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid var(--purple-primary);" alt="Store Owner">
+          <div>
+            <div style="font-weight: 800; font-size: 1.05rem;" id="dispOwnerName">Jane Doe</div>
+            <div style="font-size: 0.8rem; color: var(--accent-gold);">Founder & Head Merchant</div>
+          </div>
+        </div>
+        <div style="font-size: 0.85rem; color: #D1D5DB; margin-bottom: 0.8rem;">
+          📍 Accra & Kumasi Hubs<br>
+          ⭐ Verified Merchant (Direct MoMo Active)
+        </div>
+        <a href="#" id="btnGroupLink" target="_blank" class="btn btn-gold" style="width: 100%; padding: 0.5rem; font-size: 0.82rem; text-decoration:none; text-align:center;">💬 Join Customer WhatsApp Group</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORE CATALOG -->
+  <main style="padding: 3.5rem 6%; max-width: 1200px; margin: 0 auto;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+      <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--purple-deep);">Available Store Items</h2>
+      <span class="brand-badge">2 Active Listings</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+      <div class="card" style="padding: 0; overflow: hidden; background: #fff;">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" style="width: 100%; height: 230px; object-fit: cover;" alt="Sneakers">
+        <div style="padding: 1.5rem;">
+          <span class="status-badge status-pending">Batch SF-001 Pre-Order</span>
+          <h3 style="margin: 0.6rem 0; font-weight: 800; font-size: 1.2rem;">Air Runner Pro V2</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">Direct Import • Expected Arrival: April 15</p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 1.6rem; font-weight: 800; color: var(--purple-primary);">GH₵ 450.00</span>
+            <button onclick="openCheckout('Air Runner Pro V2', 450)" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.88rem;">Buy via MoMo</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding: 0; overflow: hidden; background: #fff;">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80" style="width: 100%; height: 230px; object-fit: cover;" alt="Watch">
+        <div style="padding: 1.5rem;">
+          <span class="status-badge status-paid">In Stock Local</span>
+          <h3 style="margin: 0.6rem 0; font-weight: 800; font-size: 1.2rem;">Luxury Gold Minimalist Watch</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">Local Stock • Ready for Same-Day Dispatch</p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 1.6rem; font-weight: 800; color: var(--purple-primary);">GH₵ 650.00</span>
+            <button onclick="openCheckout('Luxury Gold Minimalist Watch', 650)" class="btn btn-gold" style="padding: 0.5rem 1rem; font-size: 0.88rem;">Buy via MoMo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- MOMO CHECKOUT MODAL -->
+  <div id="checkoutModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.65); backdrop-filter:blur(8px); z-index:10000; align-items:center; justify-content:center; padding:1rem;">
+    <div class="card" style="width:100%; max-width:480px; background:#fff; padding:2rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
+        <h3 style="font-size:1.25rem; font-weight:800; color:var(--purple-deep);">Pay Direct to Store Owner MoMo</h3>
+        <button onclick="closeCheckout()" style="border:none; background:none; font-size:1.5rem; cursor:pointer;">✕</button>
+      </div>
+
+      <div style="background:var(--purple-soft); padding:1rem; border-radius:10px; margin-bottom:1.2rem; border:1px solid var(--border-subtle);">
+        <div style="font-size:0.8rem; color:var(--purple-deep); font-weight:700;">STORE OWNER RECEIVING MOMO:</div>
+        <div style="font-size:1.4rem; font-weight:800; color:var(--purple-primary);" id="modalMomoNum">0244 123 456</div>
+        <div style="font-size:0.88rem; font-weight:700;" id="modalMomoName">Account: Jane Doe (Luxe Apparel)</div>
+      </div>
+
+      <form onsubmit="handleCustomerOrder(event)">
+        <div style="margin-bottom:0.8rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.3rem;">Selected Item</label>
+          <input type="text" id="chkItem" readonly style="width:100%; padding:0.75rem; border-radius:8px; border:1px solid var(--border-strong); background:#F3F4F6; font-weight:800;">
+        </div>
+
+        <div style="margin-bottom:0.8rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.3rem;">Price</label>
+          <input type="text" id="chkPrice" readonly style="width:100%; padding:0.75rem; border-radius:8px; border:1px solid var(--border-strong); background:#F3F4F6; font-weight:800; color:var(--purple-primary);">
+        </div>
+
+        <div style="margin-bottom:0.8rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.3rem;">Your Full Name & Phone Number</label>
+          <input type="text" required placeholder="Kwame Mensah (0550000000)" style="width:100%; padding:0.75rem; border-radius:8px; border:1px solid var(--border-strong);">
+        </div>
+
+        <div style="margin-bottom:1.2rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.3rem;">MoMo Transaction Reference ID</label>
+          <input type="text" required placeholder="e.g. 29384019283" style="width:100%; padding:0.75rem; border-radius:8px; border:1px solid var(--border-strong);">
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;">Submit Order to Store Owner</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const info = SokoFlow.getSellerStoreInfo();
+      
+      document.getElementById('dispBrandTitle').innerText = `✨ ${info.storeName}`;
+      document.getElementById('dispHeroTitle').innerText = info.storeName;
+      document.getElementById('dispOwnerName').innerText = info.ownerName;
+
+      document.getElementById('modalMomoNum').innerText = info.momoNumber;
+      document.getElementById('modalMomoName').innerText = `Account: ${info.momoName}`;
+
+      const waPhoneClean = info.whatsappPhone.replace(/[^0-9]/g, '');
+      document.getElementById('btnChatLink').href = `https://wa.me/${waPhoneClean}`;
+      document.getElementById('btnGroupLink').href = info.whatsappGroup;
+    });
+
+    function openCheckout(item, price) {
+      document.getElementById('chkItem').value = item;
+      document.getElementById('chkPrice').value = 'GH₵ ' + price;
+      document.getElementById('checkoutModal').style.display = 'flex';
+    }
+
+    function closeCheckout() { document.getElementById('checkoutModal').style.display = 'none'; }
+
+    function handleCustomerOrder(e) {
+      e.preventDefault();
+      closeCheckout();
+      SokoFlow.showToast('Order & MoMo Reference submitted to Store Owner via WhatsApp/SMS!', 'info');
+    }
+  </script>
+</body>
+</html>

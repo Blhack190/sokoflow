@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-Order Campaign Engine — Soko Flow OS</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <aside class="sidebar">
+      <a href="index.html" class="brand-logo" style="color:#fff; margin-bottom: 2rem;">⚡ Soko Flow</a>
+      <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+      <a href="store.html" class="sidebar-link">🛍️ Storefront</a>
+      <a href="preorder.html" class="sidebar-link active">🔥 Pre-Orders</a>
+      <a href="orders.html" class="sidebar-link">📦 Orders</a>
+      <a href="imports.html" class="sidebar-link">🚢 Import Batches</a>
+    </aside>
+
+    <main class="main-content">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2rem;">
+        <div>
+          <h1 style="font-size: 2rem; font-weight: 800; color: var(--purple-deep);">Pre-Order Campaign Center</h1>
+          <p style="color: var(--text-muted);">Collect customer deposits upfront for incoming cargo drops without risking personal capital.</p>
+        </div>
+        <button class="btn btn-primary" onclick="SokoFlow.showToast('New Pre-Order Campaign Builder Opened', 'info')">+ Launch Pre-Order Drop</button>
+      </div>
+
+      <!-- ACTIVE PRE-ORDER CAMPAIGN CARD -->
+      <div class="glass-card" style="background:#fff; margin-bottom: 2.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
+          <div>
+            <span class="status-badge status-processing">Active Batch Drop</span>
+            <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--purple-deep); margin-top:0.4rem;">Campaign: Air Runner Pro V2 (Batch SF-001)</h2>
+            <p style="color:var(--text-muted); font-size:0.95rem;">Supplier: Guangzhou Footwear Logistics Port • Import Unit Cost: GH₵ 220.00 | Selling Price: GH₵ 450.00</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:0.85rem; color:var(--text-muted);">Deadline Countdown:</div>
+            <div style="font-size:1.4rem; font-weight:800; color:var(--danger-rose);">5 Days Remaining</div>
+          </div>
+        </div>
+
+        <!-- PROGRESS BAR -->
+        <div style="margin-bottom: 1.5rem;">
+          <div style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:0.5rem;">
+            <span>Funding Target: 148 / 200 Units Reserved</span>
+            <span style="color:var(--purple-primary);">74% Capital Funded (GH₵ 66,600.00 Collected)</span>
+          </div>
+          <div style="width:100%; height:14px; background:#E5E7EB; border-radius:8px; overflow:hidden;">
+            <div style="width:74%; height:100%; background:linear-gradient(90deg, var(--purple-primary), var(--accent-gold));"></div>
+          </div>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div style="display:flex; gap: 1rem; flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="SokoFlow.showToast('WhatsApp Customer Cohort Link Copied!', 'info')">📱 Copy WhatsApp Customer Group Link</button>
+          <button class="btn btn-gold" onclick="SokoFlow.showToast('Pre-order Checkout link copied to clipboard', 'info')">🔗 Copy Pre-Order Checkout Link</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

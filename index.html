@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soko Flow — The Commerce Operating System for Sellers & Importers</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#7C3AED">
+</head>
+<body>
+
+  <div class="offline-banner">⚠️ You are currently offline. Soko Flow is operating in local storage mode.</div>
+
+  <!-- LIVE REAL-TIME TRANSACTIONS TICKER -->
+  <div style="background: var(--purple-deep); color: #fff; padding: 10px 6%; font-size: 0.85rem; font-weight: 700; border-bottom: 1px solid var(--dark-border);">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+      <span>🔥 LIVE PLATFORM ACTIVITY: <strong id="tickerText">Kwame from Kumasi received direct MoMo payment for Sneakers (GH₵ 450)</strong></span>
+      <span class="status-badge status-paid" style="font-size: 0.7rem;">SYSTEM ACTIVE</span>
+    </div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-logo">
+      ⚡ Soko Flow <span class="brand-badge">Commerce OS</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="datastore.html" class="btn btn-gold" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">📶 Mobile Data Store Hub</a></li>
+      <li><a href="#features">Platform Features</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#comparison">Why Soko Flow</a></li>
+      <li><a href="#pricing">Pricing Plans</a></li>
+      <li><a href="#faq">FAQs</a></li>
+      <li><a href="store.html" class="btn btn-outline" style="padding: 0.5rem 1rem;">🛍️ Store Demo</a></li>
+      <li><a href="auth.html" class="btn btn-primary" style="padding: 0.5rem 1.2rem;">Start Free Trial</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-tagline">🚀 Ghana's Premier Commerce Operating System</div>
+      <h1 class="hero-title">Command Your Online Store, Local Sales, Import Batches & Direct MoMo Payments</h1>
+      <p class="hero-description">
+        Replace messy WhatsApp chats, lost customer notes, and manual spreadsheets. Soko Flow unifies your storefront, direct Mobile Money payouts, zero-capital pre-orders, cross-border cargo tracking, WhatsApp cohort automation, and AI business growth in one professional system.
+      </p>
+      <div class="hero-cta" style="flex-wrap: wrap; display: flex; gap: 1.2rem; justify-content: center;">
+        <a href="auth.html" class="btn btn-primary" style="padding: 1.1rem 2.5rem; font-size: 1.15rem;">Launch Your Store Free (2 Products)</a>
+        <a href="datastore.html" class="btn btn-gold" style="padding: 1.1rem 2.5rem; font-size: 1.15rem;">📶 Buy Cheap Data Bundles</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- TRUST & OPERATIONAL STATS BAR -->
+  <section style="background: var(--pure-white); padding: 2.5rem 6%; border-bottom: 1px solid var(--border-subtle);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; text-align: center;">
+      <div>
+        <div style="font-size: 2.5rem; font-weight: 800; color: var(--purple-primary);">₵ 2.4M+</div>
+        <div style="color: var(--text-muted); font-weight: 600; font-size: 0.9rem;">Direct MoMo Volume Processed</div>
+      </div>
+      <div>
+        <div style="font-size: 2.5rem; font-weight: 800; color: var(--purple-primary);">12,500+</div>
+        <div style="color: var(--text-muted); font-weight: 600; font-size: 0.9rem;">Active Ghanaian Merchants</div>
+      </div>
+      <div>
+        <div style="font-size: 2.5rem; font-weight: 800; color: var(--purple-primary);">98.8%</div>
+        <div style="color: var(--text-muted); font-weight: 600; font-size: 0.9rem;">Order Fulfillment Accuracy</div>
+      </div>
+      <div>
+        <div style="font-size: 2.5rem; font-weight: 800; color: var(--purple-primary);">0%</div>
+        <div style="color: var(--text-muted); font-weight: 600; font-size: 0.9rem;">Gateway Transaction Deductions</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE 6 DEEP OPERATIONAL PILLARS -->
+  <section id="features" style="padding: 6rem 6%; background: var(--bg-light);">
+    <div style="text-align: center; max-width: 850px; margin: 0 auto 4rem auto;">
+      <span class="brand-badge" style="background: var(--purple-soft); color: var(--purple-primary); padding: 6px 16px; font-size: 0.85rem;">THE COMMERCE OPERATING SYSTEM</span>
+      <h2 style="font-size: 2.6rem; color: var(--purple-deep); font-weight: 800; margin-top: 0.8rem; margin-bottom: 1rem;">
+        Complete Operational Control for Modern Sellers
+      </h2>
+      <p style="color: var(--text-muted); font-size: 1.15rem;">
+        Everything required to command inventory, collect customer payments, automate fulfillment, and scale cross-border imports.
+      </p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+      
+      <!-- Pillar 1 -->
+      <div class="card" style="background: var(--pure-white);">
+        <div style="width: 54px; height: 52px; background: var(--purple-soft); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.2rem;">🛍️</div>
+        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.6rem;">Personalized Online Storefront</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Get your unique store link (e.g., <code>sokoflow.com/store/your-name</code>). Display physical stock, photo galleries, size/color options, stock counters, and direct MoMo payment links.
+        </p>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div class="card" style="background: var(--pure-white);">
+        <div style="width: 54px; height: 52px; background: var(--accent-gold-light); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.2rem;">📲</div>
+        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.6rem;">Direct Store Owner MoMo Payouts</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Customers pay directly into your own MTN Mobile Money, Telecel Cash, or AirtelTigo Money account. No third-party lockups, no payout delays, zero commission lost!
+        </p>
+      </div>
+
+      <!-- Pillar 3 -->
+      <div class="card" style="background: var(--pure-white);">
+        <div style="width: 54px; height: 52px; background: var(--success-light); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.2rem;">🔥</div>
+        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.6rem;">Zero-Capital Pre-Order Engine</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Sell upcoming product drops before stock arrives! Collect upfront deposits from buyers to fund supplier orders in China or Turkey without risking your personal capital.
+        </p>
+      </div>
+
+      <!-- Pillar 4 -->
+      <div class="card" style="background: var(--pure-white);">
+        <div style="width: 54px; height: 52px; background: var(--info-light); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.2rem;">🚢</div>
+        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.6rem;">Cross-Border Cargo Pipeline Tracking</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Organize international cargo into batch numbers (e.g. SF-001). Track milestone stages from Guangzhou/Istanbul ports through ocean freight, customs clearance, and local warehouse arrival.
+        </p>
+      </div>
+
+      <!-- Pillar 5 -->
+      <div class="card" style="background: var(--pure-white);">
+        <div style="width: 54px; height: 52px; background: var(--purple-soft); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.2rem;">💬</div>
+        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.6rem;">WhatsApp Cohort Group Automation</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Automatically route customers into dedicated WhatsApp group cohorts. Broadcast exclusive product drops, answer buyer questions, and send instant arrival notices.
+        </p>
+      </div>
+
+      <!-- Pillar 6 -->
+      <div class="card" style="background: var(--pure-white);">
+        <div style="width: 54px; height: 52px; background: var(--accent-gold-light); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.2rem;">🤖</div>
+        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.6rem;">Soko AI Business Copilot</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Your 24/7 business consultant. Soko AI writes converting WhatsApp ad copy, calculates import profit margins, evaluates retail market prices, and diagnoses sales drops.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHO SOKO FLOW IS BUILT FOR -->
+  <section style="padding: 6rem 6%; background: var(--pure-white);">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 4rem auto;">
+      <h2 style="font-size: 2.4rem; font-weight: 800; color: var(--purple-deep);">Tailored for Ghanaian Businesses & Sellers</h2>
+      <p style="color: var(--text-muted); font-size: 1.1rem;">Soko Flow brings enterprise-level structure to every retail & social merchant.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+      <div class="card" style="text-align: center; background: var(--bg-light);">
+        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:1.2rem;" alt="Fashion Boutiques">
+        <h3 style="color: var(--purple-primary); font-weight: 800; margin-bottom: 0.4rem;">Fashion Boutiques</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Organize clothing drops, size variants, color matrices, and pre-orders for incoming fashion stock.</p>
+      </div>
+
+      <div class="card" style="text-align: center; background: var(--bg-light);">
+        <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=600&q=80" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:1.2rem;" alt="Electronics Merchants">
+        <h3 style="color: var(--purple-primary); font-weight: 800; margin-bottom: 0.4rem;">Electronics & Gadgets</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Track IMEI/SKU stock, batch logistics from overseas factories, warranty records, and delivery notes.</p>
+      </div>
+
+      <div class="card" style="text-align: center; background: var(--bg-light);">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:1.2rem;" alt="Social Media Vendors">
+        <h3 style="color: var(--purple-primary); font-weight: 800; margin-bottom: 0.4rem;">Social Media Vendors</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Convert Instagram followers and WhatsApp chats into organized online store orders automatically.</p>
+      </div>
+
+      <div class="card" style="text-align: center; background: var(--bg-light);">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:1.2rem;" alt="Wholesale Importers">
+        <h3 style="color: var(--purple-primary); font-weight: 800; margin-bottom: 0.4rem;">Wholesale Importers</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Manage bulk cargo batches, supplier contacts in China/Turkey, customs clearance, and reseller orders.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OLD MANUAL WAY VS SOKO FLOW OS COMPARISON -->
+  <section id="comparison" style="padding: 6rem 6%; background: var(--bg-light);">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem auto;">
+      <h2 style="font-size: 2.4rem; font-weight: 800; color: var(--purple-deep);">Why Sellers Are Upgrading to Soko Flow</h2>
+      <p style="color: var(--text-muted); font-size: 1.1rem;">Stop managing a real business through lost notebook pages.</p>
+    </div>
+
+    <div class="table-container" style="max-width: 1000px; margin: 0 auto;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Workflow Area</th>
+            <th style="color: var(--danger-rose);">Old Way (Manual WhatsApp / Notebooks)</th>
+            <th style="color: var(--purple-primary);">⚡ Soko Flow Operating System</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Product Catalog</strong></td>
+            <td>Sending 50 photos repeatedly in WhatsApp chats</td>
+            <td>1 Professional Store Link with live sizes, colors & stock</td>
+          </tr>
+          <tr>
+            <td><strong>Payments</strong></td>
+            <td>Manual MoMo screenshot checking & unorganized notes</td>
+            <td>Direct MoMo checkout with automated order records</td>
+          </tr>
+          <tr>
+            <td><strong>Pre-Orders & Imports</strong></td>
+            <td>Unorganized lists, missing customer sizes & lost funds</td>
+            <td>Real-time funding progress bars & cargo batch tracking</td>
+          </tr>
+          <tr>
+            <td><strong>Customer Management</strong></td>
+            <td>Losing buyer contacts when changing phone or chat lists</td>
+            <td>Unified CRM database with customer order history & spending</td>
+          </tr>
+          <tr>
+            <td><strong>Marketing & Copywriting</strong></td>
+            <td>Spending hours writing WhatsApp broadcast messages</td>
+            <td>Soko AI generates high-converting ad copy in 5 seconds</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE PROFIT & MARGIN CALCULATOR -->
+  <section id="calculator" style="padding: 5rem 6%; background: var(--pure-white);">
+    <div style="max-width: 1000px; margin: 0 auto; background: linear-gradient(135deg, var(--dark-base), var(--dark-surface)); border-radius: var(--radius-lg); padding: 3rem; color: var(--pure-white); box-shadow: var(--shadow-lg);">
+      <div style="text-align: center; margin-bottom: 2.5rem;">
+        <span class="brand-badge" style="background: var(--accent-gold-light); color: var(--accent-gold);">Interactive Tool</span>
+        <h2 style="font-size: 2.2rem; font-weight: 800; margin-top: 0.8rem;">Calculate Your Projected Product Profit</h2>
+        <p style="color: var(--text-light); font-size: 1rem;">Test product pricing, import costs, and projected net returns instantly.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        <div>
+          <label style="display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 0.5rem; color: #D1D5DB;">Unit Wholesale / Import Cost (GH₵)</label>
+          <input type="number" id="calcCost" value="50" oninput="runCalculator()" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--dark-border); background: #1F1538; color: #fff;">
+          
+          <label style="display: block; font-size: 0.88rem; font-weight: 700; margin-top: 1.2rem; margin-bottom: 0.5rem; color: #D1D5DB;">Estimated Shipping & Logistics per Unit (GH₵)</label>
+          <input type="number" id="calcShipping" value="15" oninput="runCalculator()" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--dark-border); background: #1F1538; color: #fff;">
+
+          <label style="display: block; font-size: 0.88rem; font-weight: 700; margin-top: 1.2rem; margin-bottom: 0.5rem; color: #D1D5DB;">Target Retail Selling Price (GH₵)</label>
+          <input type="number" id="calcPrice" value="150" oninput="runCalculator()" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--dark-border); background: #1F1538; color: #fff;">
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.06); padding: 2rem; border-radius: var(--radius-md); text-align: center; display:flex; flex-direction:column; justify-content:center;">
+          <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-light); text-transform: uppercase;">Estimated Net Profit Per Item</div>
+          <div id="calcProfit" style="font-size: 3rem; font-weight: 800; color: var(--success-green); margin: 0.5rem 0;">GH₵ 85.00</div>
+
+          <div style="display: flex; justify-content: space-around; margin-top: 1rem; border-top: 1px solid var(--dark-border); padding-top: 1rem;">
+            <div>
+              <div style="font-size: 0.8rem; color: var(--text-light);">Net Margin</div>
+              <div id="calcMargin" style="font-size: 1.4rem; font-weight: 800; color: var(--accent-gold);">56.7%</div>
+            </div>
+            <div>
+              <div style="font-size: 0.8rem; color: var(--text-light);">ROI</div>
+              <div id="calcROI" style="font-size: 1.4rem; font-weight: 800; color: var(--purple-light);">130.8%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS (3 SIMPLE STEPS) -->
+  <section id="how-it-works" style="padding: 6rem 6%; background: var(--bg-light);">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 4rem auto;">
+      <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--purple-deep);">3 Steps to Launch Your OS Today</h2>
+      <p style="color: var(--text-muted); font-size: 1.1rem;">Get operational in less than 2 minutes.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto;">
+      
+      <div class="card" style="text-align: center; background: #fff;">
+        <div style="width: 60px; height: 60px; background: var(--purple-primary); color: #fff; font-size: 1.8rem; font-weight: 800; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem auto;">1</div>
+        <h3 style="font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">Create Free Account</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">Sign up in seconds. Input your business name, WhatsApp contact, and receiving MoMo number.</p>
+      </div>
+
+      <div class="card" style="text-align: center; background: #fff;">
+        <div style="width: 60px; height: 60px; background: var(--accent-gold); color: #fff; font-size: 1.8rem; font-weight: 800; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem auto;">2</div>
+        <h3 style="font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">Add Stock or Pre-Orders</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">Upload local product inventory or launch a pre-order campaign for incoming import cargo.</p>
+      </div>
+
+      <div class="card" style="text-align: center; background: #fff;">
+        <div style="width: 60px; height: 60px; background: var(--success-green); color: #fff; font-size: 1.8rem; font-weight: 800; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem auto;">3</div>
+        <h3 style="font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">Receive MoMo & Scale</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">Customers pay straight to your Mobile Money. Send automated status updates and track net growth.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SUBSCRIPTION PRICING TIERS IN GHANA CEDIS (GH₵) -->
+  <section id="pricing" style="padding: 6rem 6%; background: var(--pure-white);">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+      <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--purple-deep);">Clear Pricing in Ghana Cedis</h2>
+      <p style="color: var(--text-muted); font-size: 1.1rem;">Choose a plan that fits your current operational scale.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto;">
+      
+      <!-- FREE PLAN -->
+      <div class="card" style="background: #fff;">
+        <h3 style="font-weight: 800; font-size: 1.4rem;">FREE STARTER</h3>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">Perfect for testing the system.</p>
+        <div style="font-size: 2.6rem; font-weight: 800; color: var(--purple-deep); margin-bottom: 1.2rem;">GH₵ 0 <span style="font-size: 0.9rem; color: var(--text-muted);">/forever</span></div>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.95rem; margin-bottom: 2rem;">
+          <td>✓ Maximum <strong>2 Store Products</strong></td>
+          <td>✓ Store Owner Direct MoMo Checkout</td>
+          <td>✓ WhatsApp Integration Button</td>
+          <td>✓ Basic Order Management</td>
+        </ul>
+        <a href="auth.html" class="btn btn-outline" style="width: 100%;">Start Free (2 Products)</a>
+      </div>
+
+      <!-- PRO SELLER PLAN (30 GH₵/MONTH) -->
+      <div class="card" style="background: var(--purple-soft); border: 2px solid var(--purple-primary); position: relative;">
+        <span class="brand-badge" style="position: absolute; top: -14px; right: 20px; background: var(--purple-primary); color: #fff;">MOST POPULAR</span>
+        <h3 style="font-weight: 800; font-size: 1.4rem; color: var(--purple-deep);">PRO SELLER</h3>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">Full operational power & AI assistant.</p>
+        <div style="font-size: 2.6rem; font-weight: 800; color: var(--purple-deep); margin-bottom: 1.2rem;">GH₵ 30 <span style="font-size: 0.9rem; color: var(--text-muted);">/month</span></div>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.95rem; margin-bottom: 2rem;">
+          <td>✓ <strong>Unlimited Store Products</strong></td>
+          <td>✓ <strong>Soko AI Business Assistant</strong></td>
+          <td>✓ Pre-Order Campaign Engine</td>
+          <td>✓ Cargo Import Batch Tracker</td>
+          <td>✓ Customer WhatsApp Group Integration</td>
+        </ul>
+        <a href="auth.html" class="btn btn-primary" style="width: 100%;">Subscribe for GH₵ 30</a>
+      </div>
+
+      <!-- CUSTOM DOMAIN PLAN (50 GH₵/MONTH) -->
+      <div class="card" style="background: #fff; border: 1px solid var(--border-strong);">
+        <h3 style="font-weight: 800; font-size: 1.4rem;">CUSTOM DOMAIN</h3>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">Your custom domain name branding.</p>
+        <div style="font-size: 2.6rem; font-weight: 800; color: var(--purple-deep); margin-bottom: 1.2rem;">GH₵ 50 <span style="font-size: 0.9rem; color: var(--text-muted);">/month</span></div>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.95rem; margin-bottom: 2rem;">
+          <td>✓ Everything in GH₵ 30 Pro Plan</td>
+          <td>✓ <strong>Connect Custom Domain</strong> (e.g. <code>yourname.com</code>)</td>
+          <td>✓ Priority 24/7 Support</td>
+          <td>✓ Staff Account Management</td>
+        </ul>
+        <a href="auth.html" class="btn btn-gold" style="width: 100%;">Subscribe for GH₵ 50</a>
+      </div>
+
+    </div>
+
+    <!-- SUBSCRIPTION PAYMENT INSTRUCTIONS -->
+    <div class="glass-card" style="max-width: 850px; margin: 3.5rem auto 0 auto; background: #fff; border-left: 6px solid var(--accent-gold);">
+      <h3 style="font-weight: 800; color: var(--purple-deep); font-size: 1.3rem; margin-bottom: 0.8rem;">📌 How to Pay Your Soko Flow Subscription</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; font-size: 0.95rem;">
+        <div style="background: var(--bg-light); padding: 1.2rem; border-radius: 10px;">
+          <strong style="color: var(--purple-primary);">1. Mobile Money (MoMo) Transfer</strong><br>
+          Send payment to MoMo Number: <br>
+          <span style="font-size: 1.3rem; font-weight: 800; color: var(--text-main);">0551690560</span><br>
+          Account Name: <strong>CHARLES ALBERT QUIST</strong>
+        </div>
+        <div style="background: var(--bg-light); padding: 1.2rem; border-radius: 10px;">
+          <strong style="color: var(--purple-primary);">2. WhatsApp Payment Verification</strong><br>
+          After sending MoMo or Bank transfer, send proof to:<br>
+          <span style="font-size: 1.3rem; font-weight: 800; color: var(--success-green);">0202824902</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREQUENTLY ASKED QUESTIONS (FAQS) -->
+  <section id="faq" style="padding: 6rem 6%; background: var(--bg-light);">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem auto;">
+      <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--purple-deep);">Frequently Asked Questions</h2>
+      <p style="color: var(--text-muted); font-size: 1.1rem;">Answers to common operational questions.</p>
+    </div>
+
+    <div style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.2rem;">
+      <div class="card" style="background: #fff;">
+        <h4 style="font-weight: 800; color: var(--purple-primary); font-size: 1.1rem; margin-bottom: 0.4rem;">How do customers pay me when ordering on my store?</h4>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Customers pay directly to your own Mobile Money (MTN, Telecel, AirtelTigo) number that you enter in your store settings. There are no middleman delays or holding periods!</p>
+      </div>
+
+      <div class="card" style="background: #fff;">
+        <h4 style="font-weight: 800; color: var(--purple-primary); font-size: 1.1rem; margin-bottom: 0.4rem;">Where do I find the cheap Mobile Data Bundles store?</h4>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Click the <strong>📶 Mobile Data Store Hub</strong> button in the navigation bar to access all 36 MTN, AirtelTigo iShare, and Telecel data packages delivered at exact Direct Prices.</p>
+      </div>
+
+      <div class="card" style="background: #fff;">
+        <h4 style="font-weight: 800; color: var(--purple-primary); font-size: 1.1rem; margin-bottom: 0.4rem;">How do I renew my platform subscription?</h4>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Transfer GH₵ 30 (Pro Plan) or GH₵ 50 (Custom Domain Plan) to Soko Flow MoMo: <strong>0551690560</strong> (CHARLES ALBERT QUIST) and send transaction proof via WhatsApp: <strong>0202824902</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background: var(--dark-base); color: #fff; padding: 4rem 6% 2rem 6%; text-align: center;">
+    <p>© 2025 Soko Flow Commerce Operating System. Built for Ghanaian Merchants & Sellers.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    function runCalculator() {
+      const cost = parseFloat(document.getElementById('calcCost').value) || 0;
+      const shipping = parseFloat(document.getElementById('calcShipping').value) || 0;
+      const price = parseFloat(document.getElementById('calcPrice').value) || 0;
+
+      const totalLandedCost = cost + shipping;
+      const profit = price - totalLandedCost;
+      const margin = price > 0 ? ((profit / price) * 100).toFixed(1) : 0;
+      const roi = totalLandedCost > 0 ? ((profit / totalLandedCost) * 100).toFixed(1) : 0;
+
+      document.getElementById('calcProfit').innerText = `GH₵ ${profit.toFixed(2)}`;
+      document.getElementById('calcMargin').innerText = `${margin}%`;
+      document.getElementById('calcROI').innerText = `${roi}%`;
+    }
+  </script>
+</body>
+</html>
