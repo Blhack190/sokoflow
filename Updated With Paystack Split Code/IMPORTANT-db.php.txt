@@ -1,0 +1,1 @@
+NOTE: You must copy your existing db.php into the folder after extracting.
